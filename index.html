@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    img {
+        border: 5px solid #555;
+    }
+
+    #section { 
+        margin-top: 2%;
+    }
+</style>
+
+
+<head>
+    <title>RRR: RING RING RING</title>
+</head>
+
+
+<body>
+    
+    <h1>RRR: RING RING RING</h1>
+    <h2>Owner Interface: Check live stream of front door, doorbell status, lock/unlock your front door, and display text over your doorbell</h2> 
+    <p>Smart security for any home</p>
+    <hr>
+
+    <div id="section">
+        <h3>Is someone at the door?</h3>
+        <h3>{{ rung }}</h3>
+        {% if rung %}
+            <p>Someone has rung the doorbell</p> 
+        {% endif %}
+    </div>
+
+    <div id="section">
+        <h3>Door Lock Status</h3>
+        <h3>{{ locked }}</h3>
+        {% if locked %}
+            <p>Door is <b>locked</b></p> 
+        {% else %}
+            <p>Door is <b>unlocked</b></p> 
+        {% endif %}
+    </div>
+
+    <div id="section">
+        <h3>Control Panel</h3>
+
+        <form method="POST">
+            <!-- <input name="lock" value="Enter Lock or Unlock to control door"> -->
+            <input type="radio" id="unlock" name="door_status" value="unlock">
+            <label for="unlock">Unlock Door</label><br>
+            <input type="radio" id="lock" name="door_status" value="lock">
+            <label for="lock">Lock Door</label>
+        </br>
+
+            <input name="display" placeholder="Display Text" style="margin-top:0.5%">
+            <input type="submit">
+        </form>
+
+    </div>
+
+    <div class="container">
+        <div class="row" id="section">
+            <div class="col-lg-8  offset-lg-2">
+                <h3 class="mt-5">Live Streaming</h3>
+                <img src="{{ url_for('video_feed') }}" width="50%" height="35%">
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+
+</html>
